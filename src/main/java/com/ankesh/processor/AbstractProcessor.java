@@ -34,7 +34,7 @@ public interface AbstractProcessor {
                         valid = false;
                     break;
                 case 3:
-                    if (params != 2) // park KA-01-P-333 White -> inputs = 3
+                    if (params != 2) // park KA-01-P-333 White -> inputs = 3 leave KA-01-P-333 4 -> inputs = 3
                         valid = false;
                     break;
                 default:

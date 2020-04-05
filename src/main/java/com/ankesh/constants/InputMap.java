@@ -12,7 +12,7 @@ public class InputMap {
     static {
         inputParameterMap.put(Constants.CREATE_PARKING_LOT, 1);
         inputParameterMap.put(Constants.PARK, 2);
-        inputParameterMap.put(Constants.LEAVE, 1);
+        inputParameterMap.put(Constants.LEAVE, 2);
         inputParameterMap.put(Constants.STATUS, 0);
         inputParameterMap.put(Constants.REG_NUMBER_FOR_CARS_WITH_COLOR, 1);
         inputParameterMap.put(Constants.SLOTS_NUMBER_FOR_CARS_WITH_COLOR, 1);

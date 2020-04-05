@@ -54,7 +54,7 @@ public class RequestProcessor implements AbstractProcessor {
                 parkingService.getSlotNumbersFromColor(inputs[1]);
                 break;
             case Constants.SLOTS_NUMBER_FOR_REG_NUMBER:
-                parkingService.getSlotNoFromRegistrationNo(inputs[1]);
+                parkingService.getSlotNoFromRegistrationNo(inputs[1], true);
                 break;
             default:
                 break;

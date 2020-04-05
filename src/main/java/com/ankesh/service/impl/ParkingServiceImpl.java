@@ -81,13 +81,13 @@ public class ParkingServiceImpl implements ParkingService {
         lock.writeLock().lock();
         validateParkingLot();
         try {
-            int slotNumber = getSlotNoFromRegistrationNo(registrationNumber);
+            int slotNumber = getSlotNoFromRegistrationNo(registrationNumber, false);
             if (parkingDataManager.leaveCar(slotNumber)) {
                 System.out.println("Registration number " + registrationNumber + "with Slot Number " + slotNumber + " is free with Charge " + billingService.calculateBill(duration));
             } else
                 System.out.println("Registration number " + registrationNumber + " not found");
         } catch (Exception e) {
-            throw new ParkingException(ErrorCode.INVALID_VALUE.getMessage().replace("{variable}", "slot_number"), e);
+            throw new ParkingException(ErrorCode.NOT_FOUND.getMessage().replace("{variable}", "Registration number " + registrationNumber), e);
         } finally {
             lock.writeLock().unlock();
         }
@@ -167,13 +167,14 @@ public class ParkingServiceImpl implements ParkingService {
 
 
     @Override
-    public int getSlotNoFromRegistrationNo(String registrationNo) throws ParkingException {
+    public int getSlotNoFromRegistrationNo(String registrationNo, boolean isTrue) throws ParkingException {
         int value = -1;
         lock.readLock().lock();
         validateParkingLot();
         try {
             value = parkingDataManager.getSlotNoFromRegistrationNo(registrationNo);
-            System.out.println(value != -1 ? value : "Not Found");
+            if (isTrue)
+                System.out.println(value != -1 ? value : "Not Found");
         } catch (Exception e) {
             throw new ParkingException(ErrorCode.PROCESSING_ERROR.getMessage(), e);
         } finally {

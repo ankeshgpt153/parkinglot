@@ -13,7 +13,8 @@ public enum ErrorCode {
     INVALID_VALUE("{variable} value is incorrect"),
     PROCESSING_ERROR("Processing Error "),
 	INVALID_FILE("Invalid File"),
-    INVALID_REQUEST("Invalid Request");
+    INVALID_REQUEST("Invalid Request"),
+    NOT_FOUND("{variable} not found");
 
     private String message = "";
 

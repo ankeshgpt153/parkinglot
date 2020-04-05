@@ -29,7 +29,7 @@ public interface ParkingService {
 
     public void getSlotNumbersFromColor(String colour) throws ParkingException;
 
-    public int getSlotNoFromRegistrationNo(String registrationNo) throws ParkingException;
+    public int getSlotNoFromRegistrationNo(String registrationNo,boolean isTrue) throws ParkingException;
 
     public void doCleanup();
 }
