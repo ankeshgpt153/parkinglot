@@ -47,7 +47,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.ankesh.ParkingLot.Main</mainClass>
+                            <mainClass>com.ankesh.ParkingLot</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

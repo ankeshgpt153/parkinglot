@@ -1,7 +1,7 @@
 #!/bin/sh
 arg1=$1
 ##directory where jar file is located    
-dir=target
+dir=./target
 ##jar file name
 jar_name=parkinglot-1.0.0-SNAPSHOT.jar
 
