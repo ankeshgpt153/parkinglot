@@ -19,10 +19,6 @@ import com.ankesh.service.ParkingService;
 public class RequestProcessor implements AbstractProcessor {
     private ParkingService parkingService;
 
-    public void setParkingService(ParkingService parkingService) throws ParkingException {
-        this.parkingService = parkingService;
-    }
-
     @Override
     public void execute(String input) throws ParkingException {
         String[] inputs = input.split(" ");
@@ -41,11 +37,11 @@ public class RequestProcessor implements AbstractProcessor {
                 break;
             case Constants.LEAVE:
                 try {
-                    int slotNumber = Integer.parseInt(inputs[1]);
-                    parkingService.unPark(slotNumber);
+                    int timeDuration = Integer.parseInt(inputs[2]);
+                    parkingService.unPark(inputs[1], timeDuration);
                 } catch (NumberFormatException e) {
                     throw new ParkingException(
-                            ErrorCode.INVALID_VALUE.getMessage().replace("{variable}", "slot_number"));
+                            ErrorCode.INVALID_VALUE.getMessage().replace("{variable}", "timeDuration"));
                 }
                 break;
             case Constants.STATUS:
@@ -66,7 +62,8 @@ public class RequestProcessor implements AbstractProcessor {
     }
 
     @Override
-    public void setService(ParkingService service) {
+    public void setParkingService(ParkingService service) {
         this.parkingService = (ParkingService) service;
     }
+
 }

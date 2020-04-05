@@ -7,6 +7,7 @@ import com.ankesh.constants.Constants;
 import com.ankesh.exception.ErrorCode;
 import com.ankesh.exception.ParkingException;
 import com.ankesh.model.Vehicle;
+import com.ankesh.service.BillingService;
 import com.ankesh.service.ParkingService;
 import com.ankesh.strategy.ParkingDataManager;
 import com.ankesh.strategy.ParkingStrategy;
@@ -31,6 +32,8 @@ public class ParkingServiceImpl implements ParkingService {
     private ParkingDataManager<Vehicle> parkingDataManager = null;
 
     private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
+
+    private BillingService billingService = null;
 
     @Override
     public void createParkingLot(int capacity) throws ParkingException {
@@ -73,15 +76,16 @@ public class ParkingServiceImpl implements ParkingService {
     }
 
     @Override
-    public void unPark(int slotNumber) throws ParkingException {
+    public void unPark(String registrationNumber, int duration) throws ParkingException {
+        billingService = new BillingServiceImpl();
         lock.writeLock().lock();
         validateParkingLot();
         try {
-
-            if (parkingDataManager.leaveCar(slotNumber))
-                System.out.println("Slot number " + slotNumber + " is free");
-            else
-                System.out.println("Slot number is Empty Already.");
+            int slotNumber = getSlotNoFromRegistrationNo(registrationNumber);
+            if (parkingDataManager.leaveCar(slotNumber)) {
+                System.out.println("Registration number " + registrationNumber + "with Slot Number " + slotNumber + " is free with Charge " + billingService.calculateBill(duration));
+            } else
+                System.out.println("Registration number " + registrationNumber + " not found");
         } catch (Exception e) {
             throw new ParkingException(ErrorCode.INVALID_VALUE.getMessage().replace("{variable}", "slot_number"), e);
         } finally {
@@ -94,7 +98,7 @@ public class ParkingServiceImpl implements ParkingService {
         lock.readLock().lock();
         validateParkingLot();
         try {
-            System.out.println("Slot No.\tRegistration No.\tColor");
+            System.out.println("Slot No.\tRegistration No.");
             List<String> statusList = parkingDataManager.getStatus();
             if (statusList.size() == 0)
                 System.out.println("Sorry, parking lot is empty.");
@@ -183,4 +187,5 @@ public class ParkingServiceImpl implements ParkingService {
         if (parkingDataManager != null)
             parkingDataManager.doCleanUp();
     }
+
 }

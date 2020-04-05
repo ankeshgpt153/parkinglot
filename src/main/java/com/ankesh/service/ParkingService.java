@@ -4,6 +4,7 @@
 package com.ankesh.service;
 
 import com.ankesh.exception.ParkingException;
+import com.ankesh.model.Car;
 import com.ankesh.model.Vehicle;
 
 import java.util.Optional;
@@ -18,7 +19,7 @@ public interface ParkingService {
 
     public Optional<Integer> park(Vehicle vehicle) throws ParkingException;
 
-    public void unPark(int slotNumber) throws ParkingException;
+    public void unPark(String  registrationNumber,int duration) throws ParkingException;
 
     public void getStatus() throws ParkingException;
 

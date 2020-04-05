@@ -99,7 +99,7 @@ public class ParkingManager<T extends Vehicle> implements ParkingDataManager<T> 
         for (int i = 1; i <= capacity.get(); i++) {
             Optional<T> vehicle = slotVehicleMap.get(i);
             if (vehicle.isPresent()) {
-                statusList.add(i + "\t\t" + vehicle.get().getRegistrationNo() + "\t\t" + vehicle.get().getColor());
+                statusList.add(i + "\t\t" + vehicle.get().getRegistrationNo());
             }
         }
         return statusList;

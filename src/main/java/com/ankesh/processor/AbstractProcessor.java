@@ -6,6 +6,7 @@ package com.ankesh.processor;
 
 import com.ankesh.constants.InputMap;
 import com.ankesh.exception.ParkingException;
+import com.ankesh.service.BillingService;
 import com.ankesh.service.ParkingService;
 
 /**
@@ -13,7 +14,7 @@ import com.ankesh.service.ParkingService;
  *
  */
 public interface AbstractProcessor {
-    public void setService(ParkingService service);
+    public void setParkingService(ParkingService service);
 
     public void execute(String action) throws ParkingException;
 

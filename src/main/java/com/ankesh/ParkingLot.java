@@ -4,6 +4,7 @@ import com.ankesh.exception.ErrorCode;
 import com.ankesh.exception.ParkingException;
 import com.ankesh.processor.AbstractProcessor;
 import com.ankesh.processor.RequestProcessor;
+import com.ankesh.service.impl.BillingServiceImpl;
 import com.ankesh.service.impl.ParkingServiceImpl;
 
 import java.io.*;
@@ -15,7 +16,7 @@ public class ParkingLot {
     public static void main(String[] args) {
 
         AbstractProcessor processor = new RequestProcessor();
-        processor.setService(new ParkingServiceImpl());
+        processor.setParkingService(new ParkingServiceImpl());
         BufferedReader bufferReader = null;
         String input = null;
         try {
