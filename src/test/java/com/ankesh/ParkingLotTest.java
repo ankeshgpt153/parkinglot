@@ -92,13 +92,14 @@ public class ParkingLotTest {
         instance.doCleanup();
     }
 
-    @Test
+    @Test(expected = ParkingException.class)
     public void testEmptyParkingLot() throws Exception {
-        ParkingService instance = new ParkingServiceImpl();
-        thrown.expect(ParkingException.class);
+
         thrown.expectMessage(CoreMatchers.is(ErrorCode.PARKING_NOT_EXIST_ERROR.getMessage()));
+
         instance.getStatus();
         assertTrue("Sorry,CarParkingDoesnotExist".equalsIgnoreCase(content));
+
         instance.createParkingLot(6);
         instance.getStatus();
         assertTrue(
@@ -107,13 +108,14 @@ public class ParkingLotTest {
         instance.doCleanup();
     }
 
-    @Test
+    @Test(expected = ParkingException.class)
     public void testParkingLotIsFull() throws Exception {
-        ParkingService instance = new ParkingServiceImpl();
-        thrown.expect(ParkingException.class);
+
         thrown.expectMessage(CoreMatchers.is(ErrorCode.PARKING_NOT_EXIST_ERROR.getMessage()));
+
         instance.park(new Car("KA-01-HH-1234", "White"));
         assertEquals("Sorry,CarParkingDoesnotExist", content);
+
         instance.createParkingLot(2);
         instance.park(new Car("KA-01-HH-1234", "White"));
         instance.park(new Car("KA-01-HH-9999", "White"));
