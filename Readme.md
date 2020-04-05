@@ -1,9 +1,9 @@
-#Parking Lot
+# Parking Lot
 Parking Lot Problem is java software to handle realtime automated ticketing system that allows my
 customers to use my parking lot without human intervention.
 
 
-##Requirements
+## Requirements
 
 * JDK 1.8
 * Maven 3.*
@@ -13,7 +13,7 @@ customers to use my parking lot without human intervention.
 * Before build the project move to the folder/directory where pom file reside and open cmd/terminal
 * Follow the steps defined in a sequence manner
 
-####Build Using Maven
+#### Build Using Maven
 ```
 mvn clean install -DskipTests=true 
 ```
